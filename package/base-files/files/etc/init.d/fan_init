@@ -1,0 +1,12 @@
+#!/bin/sh /etc/rc.common
+
+START=19
+
+start() {
+	if ! grep -q emc2301 /sys/bus/i2c/devices/i2c-0/*/name 2>/dev/null; then
+		echo emc2301 0x2f > /sys/bus/i2c/devices/i2c-0/new_device
+		sleep 1
+	fi
+	i2cset -f -y 0 0x2f 0x38 0x18
+	i2cset -f -y 0 0x2f 0x2b 0x01
+}

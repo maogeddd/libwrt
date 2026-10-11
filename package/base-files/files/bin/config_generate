@@ -163,11 +163,11 @@ generate_network() {
 		static)
 			local ipad netm prefix
 			case "$1" in
-				lan) ipad=${ipaddr:-"192.168.1.1"} ;;
+				lan) ipad=${ipaddr:-"10.0.0.1"} ;;
 				*) ipad=${ipaddr:-"192.168.$((addr_offset++)).1"} ;;
 			esac
 
-			netm=${netmask:-"255.255.255.0"}
+			netm=${netmask:-"255.255.252.0"}
 			str2ip netm "$netm"
 			netmask2prefix prefix "$netm"
 
